@@ -42,9 +42,9 @@ The following **options and arguments** will be used:
 | `-h`                | *(Optional)* Set a **hostname** in the container |
 | `<Image name>`      | *(Mandatory)* Run a container based on the image you created |
 
-**SYNTAX:**  
-```bash
-docker run -p 8000 -it -d --name <container name> -h <hostname of the container> <image name>
+    **SYNTAX:**  
+    ```bash
+    docker run -p 8000 -it -d --name <container name> -h <hostname of the container> <image name>
 
 
 ---
