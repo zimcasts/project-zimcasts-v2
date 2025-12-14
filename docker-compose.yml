@@ -1,0 +1,57 @@
+services:
+
+
+  appimg:
+    build:
+      context: .
+      dockerfile: ./zimcasts-web/_dockerfiles/webapp.dockerfile
+      tags:
+        - webapp-image
+
+
+  proxyimg:
+    build:
+      context: .
+      dockerfile: ./zimcasts-web/_dockerfiles/webproxy.dockerfile
+      tags:
+        - webproxy-image
+
+
+
+  webapp1:
+    image: webapp-image
+    hostname: webapp1
+    networks:
+      - test-network
+
+
+  webapp2:
+    image: webapp-image
+    hostname: webapp2
+    networks:
+      - test-network
+
+
+  webapp3:
+    image: webapp-image
+    hostname: webapp3
+    networks:
+      - test-network
+
+      
+
+  webproxy:
+    image: webproxy-image
+    hostname: webproxy
+    ports:
+      - 8000:8000
+    networks:
+      - test-network
+    depends_on:
+      - webapp1
+      - webapp2
+      - webapp3
+
+networks:
+  test-network:
+    driver: bridge
