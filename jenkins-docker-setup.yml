@@ -1,0 +1,33 @@
+services:
+
+  jenkinsimg:
+    build:
+      context: .
+      dockerfile: ./zimcasts-web/_dockerfiles/jenkins.dockerfile
+      tags:
+        - testjenkins-image
+
+
+
+  jenkins_cicd_server:
+    image: testjenkins-image
+    hostname: jenkins_svr
+    ports:
+      - 8080:8080
+      - 50000:50000
+    networks:
+      - test-network
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: on-failure
+
+
+networks:
+  test-network:
+    driver: bridge
+
+volumes:
+  jenkins_home:
+
+
+  
