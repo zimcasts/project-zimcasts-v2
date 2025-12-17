@@ -1,4 +1,4 @@
-\# 4. Setting Up CI/CD Using Jenkins
+# 4. Setting Up CI/CD Using Jenkins
 
 We will create a separate **Jenkins Dockerfile** and **Docker Compose YAML file**.  
 This will create a **Docker image** and **container** that has Jenkins and Docker installed.
@@ -7,7 +7,7 @@ Check the **Appendix section** of the README to get information on the declarati
 
 ---
 
-\## 📋 Pre-requisites
+## 📋 Pre-requisites
 
 - Web App Dockerfile (**Appendix A**)  
 - Web Proxy Dockerfile (**Appendix B**)  
@@ -16,17 +16,17 @@ Check the **Appendix section** of the README to get information on the declarati
 
 ---
 
-\## 📁 Files and Folders Structure
+## 📁 Files and Folders Structure
 
-\`\`\`
+```
 ZIMCASTS/
 ├── README/
-│   ├── 1\_WEBAPP.md
-│   ├── 2\_PROXY\_LB\_SETUP.md
-│   ├── 3\_DOCKER\_COMPOSE.md
-│   └── 4\_CICD\_JENKINS\_DOCKER\_COMPOSE.md
+│   ├── 1_WEBAPP.md
+│   ├── 2_PROXY_LB_SETUP.md
+│   ├── 3_DOCKER_COMPOSE.md
+│   └── 4_CICD_JENKINS_DOCKER_COMPOSE.md
 ├── zimcasts-web/
-│   ├── \_dockerfiles/
+│   ├── _dockerfiles/
 │   │   ├── webapp.dockerfile
 │   │   └── webproxy.dockerfile
 │   ├── conf.d/
@@ -36,11 +36,11 @@ ZIMCASTS/
 │   └── sites-available/
 │       └── zimcasts-web
 └── docker-compose.yml
-\`\`\`
+```
 
 ---
 
-\## 🛠 Instructions
+## 🛠 Instructions
 
 1. **Create Jenkins Dockerfile**  
    Please refer to **Appendix E: Jenkins Dockerfile** in the README section.  
@@ -52,22 +52,22 @@ ZIMCASTS/
 3. **Build the Jenkins environment**  
    Execute the following command:  
 
-   \*\*SYNTAX:\*\*  
-   \`\`\`bash
-   docker-compose -f \<custom docker compose filename\> up -d --build
-   \`\`\`
+   **SYNTAX:**  
+   ```bash
+   docker-compose -f <custom docker compose filename> up -d --build
+   ```
 
 4. **Clean up the Jenkins environment**  
    Run this command below:  
 
-   \*\*SYNTAX:\*\*  
-   \`\`\`bash
-   docker-compose -f \<custom docker compose filename\> down
-   \`\`\`
+   **SYNTAX:**  
+   ```bash
+   docker-compose -f <custom docker compose filename> down
+   ```
 
 ---
 
-\## 🔑 Notes
+## 🔑 Notes
 
 - Jenkins provides a powerful way to integrate **CI/CD pipelines** into your Dockerized environment.  
 - Using a **separate Dockerfile** ensures Jenkins has Docker installed and ready for builds.  
