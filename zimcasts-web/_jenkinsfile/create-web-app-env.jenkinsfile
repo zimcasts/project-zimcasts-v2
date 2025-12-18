@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Create Web App Resources') {
             steps {
-                sh 'docker-compose up -d --build'
+                sh 'docker compose up -d --build'
             }
         }
         stage('Clean up') {
