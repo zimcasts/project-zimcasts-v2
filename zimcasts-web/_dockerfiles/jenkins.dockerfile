@@ -12,7 +12,7 @@ COPY ./README .
 COPY ./zimcasts-web .
 COPY ./docker-compose.yml .
 
-# Switch to root user to install docker
+# Switch to root user to install docker / packages
 USER root
 
 # INSTALL DOCKER SECTION
@@ -28,7 +28,8 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Install Docker Engine and related tools:
-RUN apt-get update && apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+#RUN apt-get update && apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+RUN apt-get update && apt-get -y install docker-ce-cli containerd.io docker-compose-plugin
 
 
 
@@ -39,6 +40,7 @@ EXPOSE 50000
 
 # Switch back to jenkins_home directory
 WORKDIR /var/jenkins_home
+
 
 # Switch back to jenkins user - best practice
 USER jenkins
