@@ -30,6 +30,9 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/d
 # Install Docker Engine and related tools:
 RUN apt-get update && apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+# Add jenkins user to docker group
+RUN usermod -aG docker jenkins
+
 
 
 # Expose ports for jenkins service and accessing GUI
