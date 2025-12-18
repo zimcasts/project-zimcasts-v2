@@ -18,7 +18,7 @@ USER root
 # INSTALL DOCKER SECTION
 
 # Update package index and install required tools (for HTTPS repositories):
-RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release sudo
 
 
 # Add Docker’s official GPG key
@@ -33,7 +33,8 @@ RUN apt-get update && apt-get -y install docker-ce docker-ce-cli containerd.io d
 # Add jenkins user to docker group
 RUN usermod -aG docker jenkins
 
-
+# Change group ID based on group ID of docker in host machine
+RUN groupmod -g 1001 docker
 
 # Expose ports for jenkins service and accessing GUI
 EXPOSE 8080
