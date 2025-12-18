@@ -44,7 +44,7 @@ services:
     image: webproxy-image
     hostname: webproxy
     ports:
-      - 8000:8000
+      - 8888:8000
     networks:
       - test-network
     depends_on:
