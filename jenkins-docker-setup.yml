@@ -19,6 +19,7 @@ services:
       - test-network
     volumes:
       - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: on-failure
 
 
