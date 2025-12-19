@@ -3,16 +3,16 @@ services:
 
   appimg:
     build:
-      context: .
-      dockerfile: ./zimcasts-web/_dockerfiles/webapp.dockerfile
+      context: ./zimcasts-web
+      dockerfile: ./_dockerfiles/webapp.dockerfile
       tags:
         - webapp-image
 
 
   proxyimg:
     build:
-      context: .
-      dockerfile: ./zimcasts-web/_dockerfiles/webproxy.dockerfile
+      context: ../zimcasts-web
+      dockerfile: ./_dockerfiles/webproxy.dockerfile
       tags:
         - webproxy-image
 
