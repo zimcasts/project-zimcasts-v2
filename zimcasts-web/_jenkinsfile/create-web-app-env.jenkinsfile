@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Create Web App Resources') {
             steps {
-                sh 'docker compose --project-directory ./zimcasts-web -f compose-web-env.yml up -d --build'
+                sh 'docker compose --project-directory ./zimcasts-web -f ./zimcasts-web/compose-web-env.yml up -d --build'
             }
         }
         stage('Clean up') {
