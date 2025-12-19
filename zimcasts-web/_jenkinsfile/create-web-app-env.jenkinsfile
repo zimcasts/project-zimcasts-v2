@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Create Web App Resources') {
             steps {
-                sh 'docker compose up -d --build'
+                sh 'docker compose up -f  ../compose-web-env.yml -d --build'
             }
         }
         stage('Clean up') {
