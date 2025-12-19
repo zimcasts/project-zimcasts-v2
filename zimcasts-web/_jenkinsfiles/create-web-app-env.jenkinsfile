@@ -1,0 +1,32 @@
+<<<<<<< HEAD:zimcasts-web/_jenkinsfile/create-web-app-env.jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Create Web App Resources') {
+            steps {
+                sh "docker compose -f 'zimcasts-web/compose-web-env.yml' up -d --build"
+            }
+        }
+        stage('Clean up') {
+            steps {
+                deleteDir()
+            }
+        }
+    }
+=======
+pipeline {
+    agent any
+    stages {
+        stage('Create Web App Resources') {
+            steps {
+                sh "docker compose -f compose-web-env.yml up -d --build"
+            }
+        }
+        stage('Clean up') {
+            steps {
+                deleteDir()
+            }
+        }
+    }
+>>>>>>> 9b30347 (rename _jenkinsfile to _jenkinsfiles folder):zimcasts-web/_jenkinsfiles/create-web-app-env.jenkinsfile
+}
