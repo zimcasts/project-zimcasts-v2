@@ -3,7 +3,7 @@ services:
   jenkinsimg:
     build:
       context: .
-      dockerfile: ./zimcasts-web/_dockerfiles/jenkins.dockerfile
+      dockerfile: ./_dockerfiles/jenkins.dockerfile
       tags:
         - testjenkins-image
 
