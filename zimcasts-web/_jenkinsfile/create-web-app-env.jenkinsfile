@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('Create Web App Resources') {
             steps {
+<<<<<<< Updated upstream
                 sh 'docker compose -f  ../compose-web-env.yml up -d --build'
+=======
+                sh 'docker compose -f compose-web-env.yml up -d --build'
+>>>>>>> Stashed changes
             }
         }
         stage('Clean up') {
