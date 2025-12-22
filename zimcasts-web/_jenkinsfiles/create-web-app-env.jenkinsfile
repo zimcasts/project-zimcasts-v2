@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Verify project workspace') {
             steps {
-                step {
+                script {
                     if (fileExists(${DEV_ENVIRONMENT_DIR})) {
                         currentBuild.result = 'ABORTED'
                         error("Workspace ${DEV_ENVIRONMENT_DIR} already exists. Stopping the process.")
