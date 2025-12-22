@@ -1,9 +1,24 @@
 pipeline {
     agent any
+    environment {
+        DEV_ENVIRONMENT_DIR = '/opt/project-zimcasts/zimcasts-dev'
+    }
     stages {
+        stage('Verify project workspace') {
+            steps {
+                    if (fileExists(${DEV_ENVIRONMENT_DIR})) {
+                        currentBuild.result = 'ABORTED'
+                        error("Workspace ${DEV_ENVIRONMENT_DIR} already exists. Stopping the process.")
+                    }
+                    else {
+                        sh "mkdir -p ${DEV_ENVIRONMENT_DIR}"
+                        echo "${DEV_ENVIRONMENT_DIR} workspace created successfully."
+                    }
+            }
+        }
         stage('Create Web App Resources') {
             steps {
-                sh "docker compose -f compose-web-env.yml up -d --build"
+                sh 'docker compose up -d --build'
             }
         }
         stage('Clean up') {
