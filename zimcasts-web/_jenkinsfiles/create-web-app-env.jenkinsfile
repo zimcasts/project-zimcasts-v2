@@ -1,12 +1,16 @@
 pipeline {
-    agent any
-    node {
-        ws('/custom/workspace/path') {
-            stage('Build') {
-                sh 'echo "Building in custom workspace"'
+    agent {
+
+        node {
+            ws('/custom/workspace/path') {
+                stage('Build') {
+                    sh 'echo "Building in custom workspace"'
+                }
             }
         }
+
     }
+
     environment {
         DEV_ENVIRONMENT_DIR = 'zimcasts-dev'
     }    
