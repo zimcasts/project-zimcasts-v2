@@ -1,13 +1,13 @@
 pipeline {
-    environment {
-        DEV_ENVIRONMENT_DIR = '/opt/project-zimcasts/zimcasts-dev'
-    }
     agent {
         node {
             label 'my-node-label'
-            customWorkspace "${DEV_ENVIRONMENT_DIR}"
+            customWorkspace '/opt/project-zimcasts/'
         }
-}    
+    }
+    environment {
+        DEV_ENVIRONMENT_DIR = 'zimcasts-dev'
+    }    
     stages {
         stage('Verify project workspace') {
             steps {
