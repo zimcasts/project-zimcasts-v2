@@ -1,21 +1,18 @@
 pipeline {
-    agent any
     environment {
         DEV_ENVIRONMENT_DIR = '/opt/project-zimcasts/zimcasts-dev'
     }
+    agent {
+        node {
+            label 'my-node-label'
+            customWorkspace "${DEV_ENVIRONMENT_DIR}"
+        }
+}    
     stages {
         stage('Verify project workspace') {
             steps {
-                script {
-                    if (fileExists(${DEV_ENVIRONMENT_DIR})) {
-                        currentBuild.result = 'ABORTED'
-                        error("Workspace ${DEV_ENVIRONMENT_DIR} already exists. Stopping the process.")
-                    }
-                    else {
-                        sh "mkdir -p ${DEV_ENVIRONMENT_DIR}"
-                        echo "${DEV_ENVIRONMENT_DIR} workspace created successfully."
-                    }
-                }
+
+                echo "${DEV_ENVIRONMENT_DIR} workspace created successfully."
 
             }
         }
