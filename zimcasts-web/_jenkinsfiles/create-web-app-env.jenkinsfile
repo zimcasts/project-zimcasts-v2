@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('Verify project workspace') {
             steps {
+                step {
                     if (fileExists(${DEV_ENVIRONMENT_DIR})) {
                         currentBuild.result = 'ABORTED'
                         error("Workspace ${DEV_ENVIRONMENT_DIR} already exists. Stopping the process.")
@@ -14,6 +15,8 @@ pipeline {
                         sh "mkdir -p ${DEV_ENVIRONMENT_DIR}"
                         echo "${DEV_ENVIRONMENT_DIR} workspace created successfully."
                     }
+                }
+
             }
         }
         stage('Create Web App Resources') {
