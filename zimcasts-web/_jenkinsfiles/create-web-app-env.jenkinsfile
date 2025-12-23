@@ -1,43 +1,14 @@
 pipeline {
     agent any
     environment {
-        ENVIRONMENT_DIR = '/opt/project-zimcasts'
+        ENVIRONMENT_DIR = 'zimcasts'
         ENVIRONMENT_TYPE = 'dev'
         DOCKER_COMPOSE_FILE = 'compose-web-env.yml'
     }    
     stages {
-        stage('Verify project workspace') {
-            steps {
-                echo 'Verify project workspace...'
-                script {
-
-                    if(!fileExists("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}")) {
-
-                        ws("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}") {
-
-                            echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} workspace created successfully."
-
-                        }
-
-                    }
-                    else {
-
-
-                        echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} already exists."
-                    }
-
-
-
-                }
-                pwd()
-
-                
-
-            }
-        }
         stage('Create Web App Resources') {
             steps {
-                sh 'docker compose up -d --build'
+                sh "docker compose -p ${env.ENVIRONMENT_DIR}-${env.ENVIRONMENT_TYPE} -f ${env.DOCKER_COMPOSE_FILE} up -d --build"
             }
         }
         stage('Clean up') {
