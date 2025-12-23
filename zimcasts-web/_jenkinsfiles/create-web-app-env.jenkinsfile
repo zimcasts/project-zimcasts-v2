@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Create Web App Resources') {
             steps {
-                withEnv(readFile('./zimcasts-web/_jenkinsfiles/env/dev.txt').split('\n') as List) {
+                withEnv(readFile('./zimcasts-web/_jenkinsfiles/env/dev.txt').split('\r') as List) {
                     sh "docker compose -p ${PROJECT_NAME} -f ${DOCKER_COMPOSE_FILE} up -d --build"
                 }
                 
