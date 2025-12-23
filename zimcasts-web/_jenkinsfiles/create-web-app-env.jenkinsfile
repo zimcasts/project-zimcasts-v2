@@ -3,6 +3,7 @@ pipeline {
     environment {
         ENVIRONMENT_DIR = '/opt/project-zimcasts'
         ENVIRONMENT_TYPE = 'dev'
+        DOCKER_COMPOSE_FILE = 'compose-web-env.yml'
     }    
     stages {
         stage('Verify project workspace') {
@@ -19,10 +20,16 @@ pipeline {
                         }
 
                     }
+                    else {
+
+
+                        echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} already exists."
+                    }
 
 
 
                 }
+                pwd()
 
                 
 
