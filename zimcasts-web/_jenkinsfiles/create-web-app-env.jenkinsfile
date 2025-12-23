@@ -8,15 +8,22 @@ pipeline {
         stage('Verify project workspace') {
             steps {
                 echo 'Verify project workspace...'
-                if(!fileExists("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}")) {
+                script {
 
-                    ws("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}") {
+                    if(!fileExists("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}")) {
 
-                        echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} workspace created successfully."
+                        ws("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}") {
+
+                            echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} workspace created successfully."
+
+                        }
 
                     }
 
+
+
                 }
+
                 
 
             }
