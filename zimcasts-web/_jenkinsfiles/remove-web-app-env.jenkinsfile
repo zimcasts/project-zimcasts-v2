@@ -1,0 +1,18 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Create Web App Resources') {
+            steps {
+                withEnv(readFile('./zimcasts-web/_jenkinsfiles/env/dev.txt').split('\n') as List) {
+                    sh "docker compose -p ${PROJECT_NAME} -f ${DOCKER_COMPOSE_FILE} down"
+                }
+                
+            }
+        }
+        stage('Clean up') {
+            steps {
+                deleteDir()
+            }
+        }
+    }
+}
