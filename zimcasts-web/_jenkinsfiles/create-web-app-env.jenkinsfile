@@ -11,10 +11,6 @@ pipeline {
                 sh "docker compose -p ${env.ENVIRONMENT_DIR}-${env.ENVIRONMENT_TYPE} -f ${env.DOCKER_COMPOSE_FILE} up -d --build"
             }
         }
-        stage('Clean up') {
-            steps {
-                deleteDir()
-            }
-        }
+
     }
 }
