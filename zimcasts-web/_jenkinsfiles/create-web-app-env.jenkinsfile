@@ -1,24 +1,22 @@
 pipeline {
-    agent {
-
-        node {
-            ws('/custom/workspace/path') {
-                stage('Build') {
-                    sh 'echo "Building in custom workspace"'
-                }
-            }
-        }
-
-    }
-
+    agent any
     environment {
-        DEV_ENVIRONMENT_DIR = 'zimcasts-dev'
+        ENVIRONMENT_DIR = '/opt/project-zimcasts'
+        ENVIRONMENT_TYPE = 'dev'
     }    
     stages {
         stage('Verify project workspace') {
             steps {
+                if(!fileExists("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}")) {
 
-                echo "${DEV_ENVIRONMENT_DIR} workspace created successfully."
+                    ws("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}") {
+
+                        echo "${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE} workspace created successfully."
+
+                    }
+
+                }
+                
 
             }
         }
