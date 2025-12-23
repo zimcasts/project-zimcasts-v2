@@ -1,16 +1,25 @@
 pipeline {
     agent any
     environment {
-        ENVIRONMENT_DIR = 'zimcasts'
-        ENVIRONMENT_TYPE = 'dev'
+        PROJECT_NAME = 'zimcasts'
+        PROJECT_TYPE = 'dev'
         DOCKER_COMPOSE_FILE = 'compose-web-env.yml'
-    }    
+    } 
     stages {
-        stage('Create Web App Resources') {
+        stage('Clone Repository') {
             steps {
-                sh "docker compose -p ${env.ENVIRONMENT_DIR}-${env.ENVIRONMENT_TYPE} -f ${env.DOCKER_COMPOSE_FILE} up -d --build"
+                git branch: 'deploy-docker-compose', url: 'https://github.com/zimcasts/project-zimcasts-v2.git'
             }
         }
-
+        stage('Create Web App Resources') {
+            steps {
+                sh "docker compose -p ${env.PROJECT_DIR}-${env.PROJECT_TYPE} -f ${env.DOCKER_COMPOSE_FILE} up -d --build"
+            }
+        }
+        stage('Clean up') {
+            steps {
+                deleteDir()
+            }
+        }
     }
 }
