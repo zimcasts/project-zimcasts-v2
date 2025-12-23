@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Verify project workspace') {
             steps {
+                echo 'Verify project workspace...'
                 if(!fileExists("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}")) {
 
                     ws("${env.ENVIRONMENT_DIR}/${env.ENVIRONMENT_TYPE}") {
