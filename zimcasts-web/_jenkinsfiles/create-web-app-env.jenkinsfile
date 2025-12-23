@@ -1,14 +1,12 @@
 pipeline {
-    agent any
-    environment {
-        PROJECT_NAME = 'zimcasts'
-        PROJECT_TYPE = 'dev'
-        DOCKER_COMPOSE_FILE = 'compose-web-env.yml'
-    } 
+    agent any 
     stages {
         stage('Create Web App Resources') {
             steps {
-                sh "docker compose -p ${env.PROJECT_NAME}-${env.PROJECT_TYPE} -f ${env.DOCKER_COMPOSE_FILE} up -d --build"
+                withEnv(readFile('./_jenkinsfiles/env/dev.txt').Split('\n') as List) {
+                    sh "docker compose -p ${PROJECT_NAME} -f ${DOCKER_COMPOSE_FILE} up -d --build"
+                }
+                
             }
         }
         stage('Clean up') {

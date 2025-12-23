@@ -1,0 +1,2 @@
+PROJECT_NAME=zimcasts-dev
+DOCKER_COMPOSE_FILE=compose-web-env.yml
